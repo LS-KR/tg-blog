@@ -11,7 +11,7 @@ const spoilerExtension = {
     return src.match(/\|\|(?!\s)/)?.index;
   },
   tokenizer(src) {
-    const rule = /\|\|(?:(?!\|\|)([\s\S]))*\|\|/;
+    const rule = /\|\|((?:(?!\|\|)[^\n])*)\|\|/;
     const match = rule.exec(src);
 
     if (match) {
@@ -31,7 +31,7 @@ const underlineExtension = {
     return src.match(/--(?!\s)/)?.index;
   },
   tokenizer(src) {
-    const rule = /--(?:(?!--)([\s\S]))*--/;
+    const rule = /--((?:(?!--)[^\n])*)--/;
     const match = rule.exec(src);
     if (match) {
       return {
@@ -73,10 +73,10 @@ const sanitizeOptions: sanitizeHtml.IOptions = {
     span: ['spoiler'],
     i: ['custom-emoji']
   },
-  selfClosing: [ 'img', 'br', 'hr', 'area', 'base', 'basefont', 'input', 'link', 'meta' ],
-  allowedSchemes: [ 'http', 'https', 'ftp', 'mailto', 'tel' ],
+  selfClosing: ['img', 'br', 'hr', 'area', 'base', 'basefont', 'input', 'link', 'meta'],
+  allowedSchemes: ['http', 'https', 'ftp', 'mailto', 'tel'],
   allowedSchemesByTag: {},
-  allowedSchemesAppliedToAttributes: [ 'href', 'src', 'cite' ],
+  allowedSchemesAppliedToAttributes: ['href', 'src', 'cite'],
   allowProtocolRelative: true,
   enforceHtmlBoundary: false
 }
