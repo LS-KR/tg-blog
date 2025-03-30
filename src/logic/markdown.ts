@@ -11,7 +11,7 @@ const spoilerExtension = {
     return src.match(/\|\|(?!\s)/)?.index;
   },
   tokenizer(src) {
-    const rule = /^\|\|(?!\s)([^\n]+)(?!\s)\|\|/;
+    const rule = /\|\|(?:(?!\|\|)([\s\S]))*\|\|/;
     const match = rule.exec(src);
 
     if (match) {
@@ -31,7 +31,7 @@ const underlineExtension = {
     return src.match(/--(?!\s)/)?.index;
   },
   tokenizer(src) {
-    const rule = /^--(?!\s)([^\n]+)(?!\s)--/;
+    const rule = /--(?:(?!--)([\s\S]))*--/;
     const match = rule.exec(src);
     if (match) {
       return {
